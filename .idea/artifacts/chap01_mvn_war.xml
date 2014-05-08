@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="chap01-mvn:war">
-    <output-path>$PROJECT_DIR$/chap01-mvn/target</output-path>
-    <root id="archive" name="chap01-mvn-1.0.war">
-      <element id="artifact" artifact-name="chap01-mvn:war exploded" />
-    </root>
-  </artifact>
-</component>
