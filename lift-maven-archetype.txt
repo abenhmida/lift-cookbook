@@ -1,0 +1,8 @@
+mvn archetype:generate  \
+-DarchetypeGroupId=net.liftweb  \
+-DarchetypeArtifactId=lift-archetype-basic_2.9.1  \
+-DarchetypeVersion=2.5 \
+-DgroupId=lift.cookbook  \
+-DartifactId=chap01-mvn \
+-Dversion=1.0 \
+-DarchetypeRepository=https://oss.sonatype.org/content/repositories/releases
