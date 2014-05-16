@@ -1,4 +1,5 @@
 .idea/
 chap01-mvn/chap01-mvn.iml
-.lift-cookbook.iml
-lift-cookbook-root.iml
+chap01-mvn/target/
+chap02-mvn/target/
+.lift-cookbook.imllift-cookbook-root.iml

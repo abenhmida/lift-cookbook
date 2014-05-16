@@ -12,6 +12,7 @@
 
     <modules>
         <module>chap01-mvn</module>
+        <module>chap2-mvn</module>
     </modules>
 </project>  
   

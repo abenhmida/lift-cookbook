@@ -13,6 +13,7 @@ import mapper._
 
 import lift.cookbook.model._
 import net.liftmodules.JQueryModule
+import javax.mail.{Authenticator, PasswordAuthentication}
 
 
 /**
@@ -38,10 +39,25 @@ class Boot {
     // Build SiteMap
     def sitemap = SiteMap(
 
-      // more complex because this menu allows anything in the
-      // /static path to be visible
-      Menu(Loc("Static", Link(List("static"), true, "/static/index"),
-        "Static Content")))
+      Menu.i("Home") / "index",
+
+      Menu.i("List Contacts") / "contacts" / "list",
+      Menu.i("Create") / "contacts" / "create" >> canManage_?,
+      Menu.i("Edit") / "contacts" / "edit" >> canManage_?,
+      Menu.i("Delete") / "contacts" / "delete" >> isAdmin_?,
+      Menu.i("View") / "contacts" / "view" >> canManage_?,
+      Menu.i("SendEmail") / "send",
+
+        // more complex because this menu allows anything in the
+        // /static path to be visible
+        Menu (Loc("Static", Link(List("static"), true, "/static/index"),
+        "Static Content"))
+
+    )
+
+    LiftRules.setSiteMap(sitemap)
+
+    configureMail()
 
 
     //Init the jQuery module, see http://liftweb.net/jquery for more information.
@@ -64,7 +80,21 @@ class Boot {
     LiftRules.htmlProperties.default.set((r: Req) =>
       new Html5Properties(r.userAgent))
 
-    // Make a transaction span the whole HTTP request
-    S.addAround(DB.buildLoanWrapper)
+  }
+
+  def configureMail() = {
+    import javax.mail.{PasswordAuthentication, Authenticator}
+    System.setProperty("mail.smtp.starttls.enable", "true")
+    System.setProperty("mail.smtp.ssl.enable", "true")
+    System.setProperty("mail.smtp.host", "smtp.gmail.com")
+    System.setProperty("mail.smtp.auth", "true")
+    System.setProperty("mail.smtp.port", "465")
+
+    Mailer.authenticator = for {
+      user <- Props.get("mail.user")
+      password <- Props.get("mail.password")
+    } yield new Authenticator {
+        override def getPasswordAuthentication = new PasswordAuthentication(user, password)
+      }
   }
 }
