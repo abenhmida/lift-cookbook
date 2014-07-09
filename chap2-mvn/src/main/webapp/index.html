@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
     <title>Home</title>
 </head>
 <body class="lift:content_id=main">
 <div id="main" class="lift:surround?with=default;at=content">
+
+    <h2 data-lift="Loc.i">welcome.text</h2>
+
+    <p><span class="lift:Localization.dynamic"></span></p>
+
+    <script type="application/javascript">
+        var myFunction = function () {
+            $("#cmd1").html("function to show how to send JS commands to the server");
+        };
+    </script>
+    <h3>Sending a js script from the server</h3>
+
+    <p>
+        <span id="cmd1"></span>
+    <hr/>
+    <span id="cmd2"></span>
+    <hr/>
+    <span id="cmd3"></span>
+    <span id="cmd4"></span>
+    <script data-lift="JsCommand.jsCommand"></script>
+    </p>
 </div>
 </body>
 </html>

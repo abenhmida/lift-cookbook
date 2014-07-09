@@ -63,16 +63,20 @@
     <div class="column span-6 colborder sidebar">
         <hr class="space">
 
-        <span class="lift:Menu.builder"></span>
+        <span class="lift:Menu.builder?group=content"></span>
 
         <div class="lift:Msgs?showAll=true"></div>
         <hr class="space"/>
     </div>
 
+
     <div class="column span-17 last">
         <div id="content">The main content will get bound here</div>
+        <div>
+            <span class="lift:Menu.builder?group=admin"></span>
+        </div>
     </div>
-
+    <span class="lift:Menu.builder?group=footer"></span>
     <hr/>
 </div>
 </body>
